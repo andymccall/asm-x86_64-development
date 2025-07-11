@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
     git \
     wget \
     sudo \
+    gpg \
     && rm -rf /var/lib/apt/lists/*
 
 # Remove the default ubuntu user and group, then create your user
@@ -27,7 +28,7 @@ RUN touch /var/mail/ubuntu && chown ubuntu:ubuntu /var/mail/ubuntu || true \
 USER $USERNAME
 
 # Install oh-my-bash for the user
-RUN bash -c "$(wget https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh -O -)" && sed -i 's/OSH_THEME="font"/OSH_THEME="powerline-icon"/' ~/.bashrc
+RUN bash -c "$(wget https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh -O -)"
 
 # Set working directory
 WORKDIR /home/$USERNAME/development
